@@ -1,0 +1,27 @@
+Copyright (c) 2025 H. K.
+
+Alle Rechte vorbehalten.
+
+Diese Software ist urheberrechtlich geschützt. Ohne ausdrückliche, schriftliche Genehmigung des Autors darf diese Software weder ganz noch teilweise kopiert, verändert, verbreitet, verkauft, vermietet, lizenziert, öffentlich zugänglich gemacht oder in sonstiger Weise genutzt werden.
+
+Die Nutzung der Software in jeglicher Form ist ausschließlich mit der vorherigen, ausdrücklichen Zustimmung des Autors gestattet.
+
+Zuwiderhandlungen werden zivil- und strafrechtlich verfolgt.
+
+Die Nutzung dieser Software in einer Produktivumgebung ist nicht empfohlen (Prototyp).
+
+
+
+English version below ------------------------------------------------------
+
+Copyright (c) 2025 H. K.
+
+All rights reserved.
+
+This software is protected by copyright. Without the explicit and written permission of the author, this software may not be copied, modified, distributed, sold, rented, sublicensed, made publicly available, or used in any other way, in whole or in part.
+
+Use of this software in any form is only permitted with the prior and explicit consent of the author.
+
+Violations will be prosecuted under civil and criminal law.
+
+The use of this software in a production environment is not recommended (prototype).
