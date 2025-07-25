@@ -1,0 +1,25 @@
+<div class="appWrapperDIV">
+    <app-header />
+    <div class="appMainDIV">
+        <div class="backgroundContainer"></div>
+        <div class="contentContainer">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<div class="sidebarDIV">
+    <p-drawer
+        header="Menü"
+        [(visible)]="isSidebarVisible"
+        [style]="{
+            width: windowWidth > WINDOW_LIMIT ? '40%' : '100%',
+            'border-radius': '0',
+            'box-shadow': '0 4px 12px rgba(0, 0, 0, 0.1)',
+        }"
+    >
+        <app-footer-main />
+    </p-drawer>
+</div>
+
+<p-toast />

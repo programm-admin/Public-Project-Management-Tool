@@ -1,0 +1,96 @@
+<div>
+  <div class="contentDIV">
+    <h1>Registrieren</h1>
+
+    <p>
+      Hier können Sie sich registrieren. Füllen Sie dazu untenstehendes Formular
+      aus. <br />
+      Vielen Dank, dass Sie sich für uns entschieden haben.
+    </p>
+  </div>
+
+  <div class="contentDIV">
+    <h2>Formular</h2>
+
+    <div class="form">
+      <form action="submit" [formGroup]="userForm" (submit)="submitUserForm()">
+        <div class="formDIV">
+          <p-float-label variant="on">
+            <input
+              id="userName"
+              type="text"
+              placeholder=" "
+              formControlName="userName"
+              pInputText
+            />
+            <label htmlFor="userName">Nutzername</label>
+          </p-float-label>
+          <p-message
+            severity="error"
+            size="small"
+            *ngIf="isFieldValid('userName') || isUserNameInvalid"
+            >Nutzername ist Pflicht</p-message
+          >
+        </div>
+
+        <div class="formDIV">
+          <p-float-label variant="on">
+            <p-password
+              inputId="password"
+              type="text"
+              placeholder=" "
+              formControlName="password"
+              [toggleMask]="true"
+              weakLabel="geringe Sicherheit"
+              mediumLabel="mittlere Sicherheit"
+              strongLabel="hohe Sicherheit"
+            />
+            <label htmlFor="password">Passwort</label>
+          </p-float-label>
+          <p-message
+            severity="error"
+            size="small"
+            *ngIf="isFieldValid('password') || isPasswordInvalid"
+            >Passwort ist Pflicht und muss mindestens 8 Zeichen lang
+            sein.</p-message
+          >
+        </div>
+
+        <div class="formDIV">
+          <p-float-label variant="on">
+            <p-password
+              inputId="confirmationPassword"
+              type="text"
+              placeholder=" "
+              formControlName="confirmationPassword"
+              [toggleMask]="true"
+              [feedback]="false"
+            />
+            <label htmlFor="confirmationPassword">Passwort</label>
+          </p-float-label>
+          <p-message
+            severity="error"
+            size="small"
+            *ngIf="
+              isFieldValid('confirmationPassword') ||
+              isConfirmationPasswordInvalid
+            "
+            >Das Passwort muss bestätigt werden.</p-message
+          >
+        </div>
+
+        <p-button label="Registrieren" type="submit" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Fehler bei der Formularvalidierung"
+  [(visible)]="isDialogVisible"
+>
+  <p>
+    Ihre Eingaben sind leider nicht korrekt. Bitte überprüfen Sie diese und
+    versuchen Sie es erneut.
+  </p>
+</p-dialog>

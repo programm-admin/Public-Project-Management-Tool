@@ -1,0 +1,30 @@
+
+.buttonDIV {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 5rem;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    position: relative;
+    border: none;
+    font-size: 18px;
+    transition: color 0.5s, transform 0.2s, background-color 0.2s;
+    outline: none;
+    border-radius: 3px;
+    margin: 0 10px;
+    /* padding: 23px 33px; */
+    /* border: 3px solid #1b1b20; */
+    color: white;
+}
+
+
+.passwordDIV {
+    width: 100%;
+}
+

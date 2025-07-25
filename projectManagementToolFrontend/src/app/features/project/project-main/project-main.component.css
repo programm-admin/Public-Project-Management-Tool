@@ -1,0 +1,24 @@
+.list {
+    color: white;
+}
+
+.listItem {
+    color: white;
+}
+
+.projectTasks {
+    margin-top: 8rem;
+    width: 100%;
+}
+
+.buttonActions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+}
+
+.durationP {
+    color: black;
+}

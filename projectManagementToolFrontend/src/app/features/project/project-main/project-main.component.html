@@ -1,0 +1,202 @@
+<div>
+    <h1>{{ userProject?.PROJECT_title }}</h1>
+
+    <div class="actionsDIV">
+        <h2>Aktionen</h2>
+
+        <div class="div buttonDIV">
+            <p-button
+                class="actionBUTTON"
+                (click)="navigateToNewTaskPage()"
+                label="neue Aufgabe hinzufügen"
+                pTooltip="Anlegen einer neuen Aufgabe (Sie werden zu einem Formular weitergeleitet)"
+                icon="pi pi-plus"
+            />
+
+            <p-button
+                [label]="
+                    !hasProjectTasks()
+                        ? 'keine Aufgaben vorhanden'
+                        : isChartAreaVisible
+                        ? 'Projektinformationen anzeigen'
+                        : 'Projektfortschritt anzeigen'
+                "
+                class="actionBUTTON"
+                [icon]="
+                    isChartAreaVisible ? 'pi pi-database' : 'pi pi-percentage'
+                "
+                [disabled]="!hasProjectTasks()"
+                (onClick)="switchchartVisibility(!isChartAreaVisible)"
+            />
+
+            <p-button
+                (click)="goBackToUserStart()"
+                label="zurück zur Projektübersicht"
+                class="actionBUTTON"
+                pTooltip="zurück zur Projektübersicht über alle Ihre Projekte"
+                icon="pi pi-arrow-left"
+            />
+        </div>
+    </div>
+
+    <div class="div" *ngIf="!isChartAreaVisible">
+        <h2>Allgemeines</h2>
+
+        <div class="list" *ngIf="!showEditForm && projectStringsForList">
+            <app-list-item
+                [projectMetaInput]="projectStringsForList()"
+                [inpIsProject]="true"
+                (editProject)="switchPage(true)"
+            />
+        </div>
+
+        <div
+            class="tallInputFORM"
+            *ngIf="showEditForm && currentProject && projectForm"
+        >
+            <form
+                action="submit"
+                (ngSubmit)="submitProject()"
+                [formGroup]="projectForm"
+            >
+                <p-float-label variant="in">
+                    <input
+                        type="text"
+                        formControlName="projectTitle"
+                        pInputText
+                        id="title"
+                    />
+                    <label for="title">Projekttitel</label>
+                </p-float-label>
+                <p-message
+                    *ngIf="
+                        hasError('projectTitle') &&
+                        projectForm.get('projectTitle')?.invalid
+                    "
+                    size="small"
+                    severity="error"
+                    >Der Titel ist Pflicht.</p-message
+                >
+
+                <p-float-label variant="in">
+                    <input
+                        type="text"
+                        formControlName="projectDescription"
+                        pInputText
+                        id="description"
+                    />
+                    <label for="description">Projektbeschreibung</label>
+                </p-float-label>
+
+                <div class="date">
+                    <p>Startdatum:</p>
+                    <p-date-picker
+                        formControlName="projectStart"
+                        [iconDisplay]="'input'"
+                        [showIcon]="true"
+                        [maxDate]="this.projectForm.get('projectEnd')?.value"
+                        dateFormat="dd.mm.yy"
+                        (onSelect)="onChangeDatePicker()"
+                        size="large"
+                    />
+                </div>
+
+                <div class="date">
+                    <p>Enddatum:</p>
+                    <p-date-picker
+                        formControlName="projectEnd"
+                        [iconDisplay]="'input'"
+                        [showIcon]="true"
+                        [minDate]="this.projectForm.get('projectStart')?.value"
+                        dateFormat="dd.mm.yy"
+                        (onSelect)="onChangeDatePicker()"
+                        size="large"
+                    />
+                </div>
+
+                <p *ngIf="projectDuration === 1" class="durationP">
+                    Projektdauer: {{ projectDuration }} Tag
+                </p>
+                <p *ngIf="projectDuration !== 1" class="durationP">
+                    Projektdauer: {{ projectDuration }} Tage
+                </p>
+
+                <p-float-label variant="in">
+                    <input
+                        type="text"
+                        formControlName="projectCustomer"
+                        pInputText
+                        id="customer"
+                    />
+                    <label for="customer">Projektkunde/n</label>
+                </p-float-label>
+
+                <p-float-label variant="in">
+                    <input
+                        type="text"
+                        formControlName="projectTicketNumber"
+                        pInputText
+                        id="ticketNumber"
+                    />
+                    <label for="ticketNumber">Projektticketnummer</label>
+                </p-float-label>
+
+                <div class="buttonActions">
+                    <p-button
+                        (click)="saveCurrentProject()"
+                        *ngIf="showEditForm"
+                        label="Projekt speichern"
+                        pTooltip="Projekt speichern und zurück zur Projektübersicht kehren"
+                        styleClass="buttonShadow"
+                        icon="pi pi-save"
+                    />
+
+                    <p-button
+                        label="Abbrechen"
+                        icon="pi pi-times"
+                        (onClick)="switchPage(false)"
+                        severity="secondary"
+                        styleClass="buttonShadow"
+                    />
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="!currentProject">
+            <p>
+                FEHLER: Aufgaben konnten nicht abgerufen werden. <br />
+                Bitte versuche es erneut.
+            </p>
+        </div>
+
+        <div class="projectTasks">
+            <h2>Aufgaben</h2>
+            <div
+                *ngIf="
+                    currentProject && currentProject.PROJECT_tasks.length > 0
+                "
+            >
+                <app-clickable-list
+                    [inpHandleItemClick]="selectProjectTask"
+                    [isProjectListGiven]="false"
+                    [inpTaskList]="currentProject.PROJECT_tasks"
+                    [inpWindowWidth]="windowWidth"
+                />
+            </div>
+
+            <div
+                *ngIf="
+                    currentProject && currentProject.PROJECT_tasks.length < 1
+                "
+            >
+                <p>Aktuell gibt es noch keine Aufgaben für dieses Projekt.</p>
+            </div>
+        </div>
+
+        <app-file-upload [accountID]="userAccountID" [projectID]="projectID" />
+    </div>
+
+    <div class="div" *ngIf="isChartAreaVisible && formatDataForChart()">
+        <app-project-chart [inpChartData]="formatDataForChart()!" />
+    </div>
+</div>

@@ -1,0 +1,136 @@
+<div>
+    <h2>Aufgabe bearbeiten</h2>
+
+    <div class="backButtonDIV">
+        <p-button
+            label="zurück zur Projektübersicht"
+            icon="pi pi-arrow-left"
+            (onClick)="navigateBackToProjectsPage()"
+            styleClass="buttonShadow"
+        />
+    </div>
+
+    <div
+        class="taskContentList"
+        *ngIf="!showTaskForm && currentTaskContentList"
+    >
+        <div class="list">
+            <app-list-item
+                [projectMetaInput]="currentTaskContentList()"
+                [inpIsProject]="false"
+                (editProject)="switchTaskForm(true)"
+            />
+        </div>
+    </div>
+
+    <div class="tallInputFORM">
+        <form
+            action="submit"
+            (submit)="submitTask()"
+            [formGroup]="taskForm"
+            *ngIf="showTaskForm"
+        >
+            <div>
+                <p-float-label variant="on">
+                    <input
+                        type="text"
+                        pInputText
+                        id="title"
+                        formControlName="TASK_title"
+                    />
+                    <label for="title">Aufgabentitel</label>
+                </p-float-label>
+                <p-message *ngIf="hasError('TASK_title')" severity="error"
+                    >Titel ist Pflicht.</p-message
+                >
+            </div>
+
+            <div>
+                <p-float-label variant="on">
+                    <input
+                        type="text"
+                        pInputText
+                        id="description"
+                        formControlName="TASK_description"
+                    />
+                    <label for="description">Beschreibung</label>
+                </p-float-label>
+                <p-message *ngIf="hasError('TASK_description')" severity="error"
+                    >Beschreibung ist Pflicht.</p-message
+                >
+            </div>
+
+            <div class="date">
+                <p>Startdatum:</p>
+                <p-date-picker
+                    formControlName="TASK_start"
+                    [showIcon]="true"
+                    [maxDate]="taskForm.get('TASK_end')?.value"
+                    dateFormat="dd.mm.yy"
+                    (onSelect)="calculateTaskDuration()"
+                />
+                <p-message *ngIf="hasError('TASK_start')" severity="error"
+                    >Startdatum ist Pflicht.</p-message
+                >
+            </div>
+
+            <div class="date">
+                <p>Enddatum:</p>
+                <p-date-picker
+                    formControlName="TASK_end"
+                    [showIcon]="true"
+                    [minDate]="taskForm.get('TASK_start')?.value"
+                    dateFormat="dd.mm.yy"
+                    (onSelect)="calculateTaskDuration()"
+                />
+                <p-message *ngIf="hasError('TASK_end')" severity="error"
+                    >Enddatum ist Pflicht.</p-message
+                >
+            </div>
+
+            <p>
+                {{
+                    taskDuration > 1
+                        ? "Dauer: " + taskDuration + " Tage"
+                        : "Dauer: " + taskDuration + " Tag"
+                }}
+            </p>
+
+            <p-float-label variant="on">
+                <input
+                    type="text"
+                    pInputText
+                    id="members"
+                    formControlName="TASK_members"
+                />
+                <label for="members">Mitglieder</label>
+            </p-float-label>
+
+            <p-float-label variant="on">
+                <input
+                    type="text"
+                    pInputText
+                    id="ticketNumber"
+                    formControlName="TASK_ticketNumber"
+                />
+                <label for="ticketNumber">Ticketnummer</label>
+            </p-float-label>
+
+            <div class="buttonActionsDIV">
+                <p-button
+                    label="Aufgabe speichern"
+                    icon="pi pi-save"
+                    type="submit"
+                    styleClass="buttonShadow"
+                />
+                <p-button
+                    label="Abbrechen"
+                    icon="pi pi-times"
+                    (onClick)="switchTaskForm(false)"
+                    severity="secondary"
+                    styleClass="buttonShadow"
+                />
+            </div>
+        </form>
+    </div>
+</div>

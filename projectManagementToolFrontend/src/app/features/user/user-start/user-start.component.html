@@ -1,0 +1,65 @@
+<div class="userStartDIV">
+    <h1>Startseite</h1>
+
+    <div class="actionsDIV">
+        <h2>Aktionen</h2>
+
+        <div class="buttonDIV">
+            <p-button
+                *ngIf="stylingConfig"
+                (onClick)="navigateToNewProjectPage()"
+                pTooltip="neues Projekt anlegen"
+                label="Neues Projekt"
+                class="actionBUTTON"
+                icon="pi pi-plus"
+            />
+        </div>
+    </div>
+
+    <div class="userSubDIV">
+        <h2 class="userSubDIVHeading">aktuelle Projekte</h2>
+
+        <app-clickable-list
+            [inpHandleItemClick]="handleProjectClick"
+            [isProjectListGiven]="true"
+            [inpProjectList]="projects ?? []"
+            [inpWindowWidth]="windowWidth"
+        />
+
+        <div
+            class="projectDIV informationDIV"
+            *ngIf="projects && projects.length < 1"
+        >
+            <p>Du hast keine Projekte in den letzten 3 Tagen besucht.</p>
+        </div>
+    </div>
+
+    <div class="userSubDIV">
+        <h2>in den letzten 3 Tagen besuchte Projekte</h2>
+
+        <app-clickable-list
+            *ngIf="recentProjects"
+            [inpProjectList]="recentProjects"
+            [inpHandleItemClick]="handleProjectClick"
+            [isProjectListGiven]="true"
+            [inpWindowWidth]="windowWidth"
+        />
+
+        <div
+            class="projectDIV informationDIV"
+            *ngIf="recentProjects && recentProjects.length < 1"
+        >
+            <p>Du hast keine Projekte in den letzten 3 Tagen besucht.</p>
+        </div>
+    </div>
+
+    <app-overview-chart
+        *ngIf="
+            projectListForChartComponent &&
+            projectListForChartComponent.length > 0
+        "
+        [inputHeading]="'Projekte'"
+        [inputHoverString]="'Projektdauer'"
+        [accountID]="userAccountID"
+    ></app-overview-chart>
+</div>

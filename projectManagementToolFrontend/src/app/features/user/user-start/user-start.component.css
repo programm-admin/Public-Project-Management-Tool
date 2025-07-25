@@ -1,0 +1,18 @@
+.userStartDIV {
+    padding-left: var(--div--padding--left-right);
+    padding-right: var(--div--padding--left-right);
+}
+
+.userSubDIV {
+    width: 100%;
+    height: calc(20rem + 2 * var(--div--padding--top-bottom));
+    margin-bottom: 1rem;
+}
+
+.userSubDIVHeading {
+    height: 5rem;
+}
+
+.userSubDIV h2 {
+    height: 6%;
+}

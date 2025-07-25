@@ -1,0 +1,10 @@
+.taskContentList {
+    background-color: white;
+}
+
+.backButtonDIV {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: flex-start;
+}

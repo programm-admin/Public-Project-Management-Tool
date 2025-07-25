@@ -1,0 +1,97 @@
+.headerDIV {
+    background-color: rgba(35, 37, 43, 1);
+
+    font-weight: bold;
+    font-size: var(--header--font-size);
+
+    width: 100%;
+    height: 4rem;
+
+    padding-left: var(--div--padding--left-right);
+    padding-right: var(--div--padding--left-right);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heading {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--standard--header--color);
+}
+
+.heading:hover {
+    text-decoration: underline;
+}
+
+.userPath {
+    height: 100%;
+    text-decoration: none;
+    background-color: transparent;
+    transition-duration: var(--standard--transition--duration);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--standard--color);
+    border: none;
+
+    padding-left: var(--div--padding--left-right);
+    padding-right: var(--div--padding--left-right);
+}
+
+.userPath:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: 0.1rem solid var(--standard--background--color);
+}
+
+.userAction {
+    background-color: transparent;
+    height: 100%;
+    width: 4rem;
+    border: none;
+    transition-duration: var(--standard--transition--duration);
+}
+
+.userAction:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: 0.1rem solid var(--standard--background--color);
+}
+
+.userAction:hover .userActionIcon {
+    color: white;
+    transition-duration: var(--standard--transition--duration);
+}
+
+.userActionIcon {
+    color: var(--standard--header--color);
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.logoSVG {
+    height: 4rem;
+    width: auto;
+}
+
+@media only screen and (min-width: 1000px) {
+    .logoDIV {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .logoDIV {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

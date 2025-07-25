@@ -1,0 +1,38 @@
+<div *ngIf="!isUserLoggedIn || !currentUser">
+    <h1>
+        Herzlich willkommen auf der Seite dieser Projekt-Management-Tool-Seite,
+    </h1>
+    <p>
+        hier können Sie neue Projekte erstellen, eigene Projekte bearbeiten und
+        den Fortschritt Ihrer Projekte mitverfolgen. <br />
+        Melden Sie sich dazu einfach an.
+    </p>
+    <p>
+        Sie haben noch keinen Account? - Dann registrieren Sie sich einfach und
+        bequem <a [routerLink]="siteList[2].fullPath">hier</a>.
+    </p>
+
+    <h1>Anmelden</h1>
+    <p-button
+        label="hier anmelden"
+        (onClick)="navigationService.navigateToLoginPage()"
+    />
+
+    <h2>Weitere Seiten</h2>
+    <ul role="list">
+        <li *ngFor="let route of siteList" class="otherSiteListITEM">
+            <a [href]="route.fullPath">{{ route.title }}</a>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isUserLoggedIn && currentUser" class="div">
+    <h1>Hallo, {{ currentUser.userName }}</h1>
+    <p>willkommen zurück</p>
+
+    <p-button
+        label="zu meinen Projekten"
+        icon="pi pi-list-check"
+        (onClick)="navigateToProjectsPage()"
+    />
+</div>

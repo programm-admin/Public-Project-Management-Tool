@@ -1,0 +1,118 @@
+<div class="userStartDIV">
+    <h1>Neue Aufgabe anlegen</h1>
+
+    <div class="tallInputFORM">
+        <form
+            action="submit"
+            class="formTask"
+            (submit)="submitNewTask()"
+            [formGroup]="newTaskForm"
+        >
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="TASK_title"
+                    id="title"
+                />
+                <label for="title">Titel</label>
+            </p-float-label>
+            <p-message *ngIf="hasError('TASK_title')" severity="error"
+                >Titel ist Pflicht.</p-message
+            >
+
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="TASK_description"
+                    id="description"
+                />
+                <label for="description">Beschreibung</label>
+            </p-float-label>
+            <p-message *ngIf="hasError('TASK_description')" severity="error"
+                >Beschreibung ist Pflicht.</p-message
+            >
+
+            <div class="date">
+                <p>Startdatum:</p>
+                <p-datePicker
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    formControlName="TASK_start"
+                    [maxDate]="newTaskForm.get('TASK_end')?.value"
+                    dateFormat="dd.mm.yy"
+                    [showButtonBar]="true"
+                    (onSelect)="calculateTaskDuration()"
+                />
+                <p-message
+                    *ngIf="hasError('TASK_start') && isFormSubmitted"
+                    severity="error"
+                    >Startdatum ist Pflicht.</p-message
+                >
+            </div>
+
+            <div class="date">
+                <p>Enddatum:</p>
+                <p-datePicker
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    formControlName="TASK_end"
+                    [minDate]="newTaskForm.get('TASK_start')?.value"
+                    dateFormat="dd.mm.yy"
+                    [showButtonBar]="true"
+                    (onSelect)="calculateTaskDuration()"
+                />
+                <p-message *ngIf="hasError('TASK_end')" severity="error"
+                    >Enddatum ist Pflicht.</p-message
+                >
+            </div>
+
+            <p class="durationP">
+                {{
+                    taskDuration > 1
+                        ? "Dauer: " + taskDuration + " Tage"
+                        : "Dauer: " + taskDuration + " Tag"
+                }}
+            </p>
+
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="TASK_Members"
+                    id="members"
+                />
+                <label for="members"
+                    >Mitglieder (bitte jeweils mit einem Komma trennen)</label
+                >
+            </p-float-label>
+
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="TASK_ticketNumber"
+                    id="ticketNumber"
+                />
+                <label for="ticketNumber">Ticketnummer</label>
+            </p-float-label>
+
+            <div class="buttonActionsDIV">
+                <p-button
+                    label="Aufgabe speichern"
+                    type="submit"
+                    styleClass="buttonShadow"
+                />
+
+                <p-button
+                    label="Abbrechen"
+                    icon="pi pi-times"
+                    severity="secondary"
+                    styleClass="buttonShadow"
+                    (onClick)="navigateToProjectMainPage()"
+                />
+            </div>
+        </form>
+    </div>
+</div>

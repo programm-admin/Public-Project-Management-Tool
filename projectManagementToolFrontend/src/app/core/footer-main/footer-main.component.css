@@ -1,0 +1,21 @@
+.footerDIV {
+    width: 100%;
+    color: black;
+    height: 90%;
+}
+
+.footerDIV h2 {
+    font-size: 1.6rem;
+}
+
+.footerLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+
+    height: 30%;
+    font-size: var(--standard--font-size);
+    line-height: var(--standard--line-height);
+}

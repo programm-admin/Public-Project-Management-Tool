@@ -1,0 +1,8 @@
+<div class="footerDIV">
+    <h2>Weiterführende Links</h2>
+    <ul class="footerLinks">
+        <li *ngFor="let route of generalSiteList">
+            <a [href]="route.fullPath">{{ route.title }}</a>
+        </li>
+    </ul>
+</div>

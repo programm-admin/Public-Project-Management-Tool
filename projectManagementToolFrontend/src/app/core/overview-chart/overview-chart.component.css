@@ -1,0 +1,5 @@
+.chartDIV {
+    width: calc(100% - 2 * var(--div--padding--left-right));
+    border: 0.15rem solid var(--header--background-color);
+    margin-top: 1rem;
+}

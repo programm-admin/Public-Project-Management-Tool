@@ -1,0 +1,19 @@
+.katanaDIV p {
+  text-align: justify;
+}
+
+table {
+  background-color: transparent;
+}
+
+td,
+th {
+  color: white;
+}
+
+.mat-column-title,
+.mat-column-url,
+.mat-column-description {
+  border-bottom: 0.1rem solid white;
+  font-size: calc(var(--standard--font-size) * 0.9);
+}

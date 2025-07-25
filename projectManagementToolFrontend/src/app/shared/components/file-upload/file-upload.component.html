@@ -1,0 +1,71 @@
+<!-- <div class="fileUpload">
+  <form
+    (submit)="onUploadFiles($event)"
+    class="fileUploadFORM"
+    matTooltip="Hier klicken, um Dateien für dieses Projekt hochzuladen."
+    matTooltipPosition="above"
+  >
+    <input
+      type="file"
+      (change)="onFileSelect($event)"
+      multiple
+      class="file-upload-input"
+      id="uploadINPUT"
+    />
+    <label for="uploadINPUT">
+      <span *ngIf="selectedFiles.length < 1">Wählen Sie eine Datei aus</span>
+      <span *ngIf="selectedFiles.length > 0">{{ selectedFiles[0].name }}</span>
+    </label>
+  </form>
+
+  <button
+    type="submit"
+    *ngIf="selectedFiles.length > 0"
+    class="bigTextBUTTON"
+    (click)="onUploadFiles($event)"
+  >
+    Dateien hochladen
+  </button>
+
+  <ul *ngIf="fileNames.length > 0" class="fileNamesUL">
+    <li *ngFor="let fileName of fileNames">
+      {{ fileName }}
+    </li>
+  </ul> -->
+
+<!-- <ul>
+    <li *ngFor="let fileForProject of selectableFiles" class="fileDownloadItem">
+      {{ fileForProject.originalName }}
+      <button
+        (click)="
+          downloadFile(fileForProject.fileName, fileForProject.originalName)
+        "
+        matTooltip="Hier klicken, um die Datei direkt herunterzuladen."
+        [matTooltipHideDelay]="stylesConfig?.tooltipDisplayDelay"
+      >
+        <mat-icon fontIcon="download" />
+      </button>
+    </li>
+  </ul> -->
+<!-- </div> -->
+
+<p-fileUpload
+  #fileUpload
+  mode="basic"
+  chooseLabel="Datei/en auswählen"
+  name="demo[]"
+  (onUpload)="upload($event)"
+  [multiple]="true"
+  mode="advanced"
+>
+  <ng-template #empty>
+    <div>Drag and drop files to here to upload.</div>
+  </ng-template>
+  <ng-template #content>
+    <ul *ngIf="uploadedFiles.length">
+      <li *ngFor="let file of uploadedFiles">
+        {{ file.name }} - {{ file.size }} bytes
+      </li>
+    </ul>
+  </ng-template>
+</p-fileUpload>

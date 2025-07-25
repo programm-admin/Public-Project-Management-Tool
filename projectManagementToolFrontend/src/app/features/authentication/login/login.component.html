@@ -1,0 +1,84 @@
+<div>
+  <h1>Login</h1>
+  <div class="contentDIV">
+    <p>
+      Hier können Sie sich einloggen. Füllen Sie bitte dazu einfach dieses
+      Login-Formular aus, danke
+    </p>
+
+    <div class="form">
+      <form
+        action="submit"
+        [formGroup]="loginForm"
+        (submit)="submitLoginForm()"
+      >
+        <div class="formField">
+          <p-float-label variant="in">
+            <input
+              type="text"
+              id="username"
+              pInputText
+              autocomplete="off"
+              formControlName="userName"
+            />
+            <label for="username">Nutzername</label>
+          </p-float-label>
+          <p-message
+            severity="error"
+            variant="text"
+            size="small"
+            *ngIf="isFieldValid('userName') || isUserNameInvalid"
+            >Nutzername ist Pflicht.</p-message
+          >
+        </div>
+
+        <div class="formField">
+          <p-float-label variant="in">
+            <p-password
+              inputId="password"
+              [toggleMask]="true"
+              autocomplete="off"
+              formControlName="password"
+              weakLabel="geringe Sicherheit"
+              mediumLabel="mittlere Sicherheit"
+              strongLabel="hohe Sicherheit"
+            />
+            <label for="password">Passwort</label>
+          </p-float-label>
+          <p-message
+            severity="error"
+            variant="text"
+            size="small"
+            *ngIf="isFieldValid('password') || isPasswordInvalid"
+            >Passwort ist Pflicht und muss mindestens 8 Zeichen lang
+            sein.</p-message
+          >
+        </div>
+
+        <!-- <mat-form-field class="div">
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="userName" />
+        </mat-form-field> -->
+
+        <!-- <mat-form-field class="div">
+          <mat-label>Passwort</mat-label>
+          <input type="password" matInput formControlName="password" />
+        </mat-form-field> -->
+
+        <div>
+          <p-button type="submit" label="Einloggen" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Fehler bei der Formularvalidierung"
+  [(visible)]="isDialogVisible"
+>
+  <p>
+    Ihre Eingaben sind nicht korrekt. Bitte überprüfen und korrigieren Sie diese
+    und versuchen Sie es erneut.
+  </p>
+</p-dialog>

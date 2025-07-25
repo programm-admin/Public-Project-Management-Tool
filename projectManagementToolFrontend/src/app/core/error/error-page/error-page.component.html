@@ -1,0 +1,7 @@
+<div>
+    <h1 *ngIf="errorCode === ''" >FEHLER</h1>
+    <h1 *ngIf="errorCode !== ''" >FEHLER {{ errorCode }}</h1>
+
+    <p>Beschreibung: {{ errorMessage }}</p>
+
+</div>

@@ -1,0 +1,7 @@
+<button *ngIf="!isLoginButton" (click)="navigateToUserURL()" >
+    {{ buttonTextList[1] }}
+</button>
+
+<button *ngIf="isLoginButton" (click)="navigateToUserURL()" >
+    {{ buttonTextList[0] }}
+</button>

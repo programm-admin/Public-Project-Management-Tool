@@ -1,0 +1,35 @@
+<div class="headerDIV">
+    <div class="logoDIV">
+        <img
+            src="project-logo.svg"
+            alt="Project-Management-Tool Logo"
+            class="logoSVG"
+        />
+        <!-- <h2 (click)="toggleSidebar(true)" class="heading" tabindex="0">
+            {{ windowWidth > 1000 ? "PROJEKT-MANAGEMENT" : "P-M-T" }}
+        </h2> -->
+    </div>
+
+    <a
+        *ngIf="userAccountService.getIsLoggedIn()"
+        [href]="navigationList[3].fullPath"
+        class="userPath"
+    >
+        {{windowWidth > 1000 ? `Nutzer: ${userAccountService.getUserName()}` : userAccountService.getUserName()}}
+    </a>
+
+    <button
+        *ngIf="userAccountService.getIsLoggedIn()"
+        (onClick)="userAccountService.logOutUser()"
+        pTooltip="aus diesem Account ausloggen"
+        class="userAction"
+    >
+        <i
+            *ngIf="!userAccountService.getIsLoggedIn(); else logout"
+            class="pi pi-user userActionIcon"
+        ></i>
+        <ng-template #logout>
+            <i class="pi pi-sign-out userActionIcon"></i>
+        </ng-template>
+    </button>
+</div>

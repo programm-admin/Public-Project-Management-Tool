@@ -1,0 +1,97 @@
+<div class="full">
+    <h1>Neues Projekt erstellen</h1>
+    <p>
+        Hier können Sie ein neues Projekt erstellen. Füllen Sie dazu einfach
+        unteres Formular aus.
+    </p>
+
+    <div class="tallInputFORM">
+        <form
+            action="submit"
+            [formGroup]="newProjectForm"
+            (submit)="handleFormSubmit()"
+        >
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="PROJECT_title"
+                    id="title"
+                />
+                <label for="title">Titel</label>
+            </p-float-label>
+
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="PROJECT_description"
+                    id="description"
+                />
+                <label for="description">Beschreibung</label>
+            </p-float-label>
+
+            <div class="date">
+                <p>Startdatum:</p>
+                <p-datePicker
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    formControlName="PROJECT_start"
+                    [minDate]="minDate"
+                    dateFormat="dd.mm.yy"
+                />
+            </div>
+
+            <div class="date">
+                <p>Enddatum:</p>
+                <p-datePicker
+                    class="datePicker"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    formControlName="PROJECT_end"
+                    [minDate]="minDate"
+                    inputId="end"
+                    dateFormat="dd.mm.yy"
+                />
+            </div>
+
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="PROJECT_customer"
+                    id="customer"
+                />
+                <label for="customer">Kunde</label>
+            </p-float-label>
+
+            <p-float-label variant="in">
+                <input
+                    type="text"
+                    pInputText
+                    formControlName="PROJECT_ticketNumber"
+                    id="ticketNumber"
+                />
+                <label for="ticketNumber">Ticketnummer</label>
+            </p-float-label>
+
+            <div class="buttonActionsDIV">
+                <p-button
+                    type="submit"
+                    mat-fab
+                    extended
+                    label="Projekt mit ID erstellen"
+                    styleClass="buttonShadow"
+                />
+
+                <p-button
+                    label="Abbrechen"
+                    icon="pi pi-times"
+                    severity="secondary"
+                    styleClass="buttonShadow"
+                    (onClick)="navigateToProjectMainPage()"
+                />
+            </div>
+        </form>
+    </div>
+</div>

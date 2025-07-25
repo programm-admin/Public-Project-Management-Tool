@@ -1,0 +1,10 @@
+<div
+    class="projectChart"
+    *ngIf="chartDataProjectTasks && chartDataProjectTasksOptions"
+>
+    <p-chart
+        [data]="chartDataProjectTasks"
+        [options]="chartDataProjectTasksOptions"
+        type="bar"
+    />
+</div>

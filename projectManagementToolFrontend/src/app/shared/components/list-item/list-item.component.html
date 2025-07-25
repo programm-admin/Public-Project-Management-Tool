@@ -1,0 +1,32 @@
+<!-- <span class="listItem">{{ textInput() }}</span> -->
+<p-panel
+    [header]="inpIsProject() ? 'Projektdaten' : 'Aufgabendaten'"
+    [toggleable]="false"
+>
+    <p-table [value]="projectMetaInput()" stripedRows>
+        <ng-template #header>
+            <tr>
+                <th>Attribut</th>
+                <th>Inhalt</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-product>
+            <tr>
+                <td>{{ product.attribute }}</td>
+                <td *ngIf="product.value.length > 0; else noValue">
+                    {{ product.value }}
+                </td>
+                <ng-template #noValue>
+                    <td><i>kein Datum hinterlegt</i></td>
+                </ng-template>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-button
+        [label]="inpIsProject() ? 'Projekt bearbeiten' : 'Aufgabe bearbeiten'"
+        (onClick)="editProjectMeta()"
+        icon="pi pi-pencil"
+        pTooltip="Projekt-Attribute bearbeiten"
+        tooltipPosition="right"
+    />
+</p-panel>

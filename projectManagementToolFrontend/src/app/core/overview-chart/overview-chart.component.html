@@ -1,0 +1,4 @@
+<div class="chartDIV" *ngIf="chart && chartOptions">
+    <h2>{{ inputHeading() || "Übersicht" }}</h2>
+    <p-chart type="bar" [data]="chart" [options]="chartOptions" />
+</div>

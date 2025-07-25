@@ -1,0 +1,114 @@
+<div class="list" *ngIf="isProjectListGiven()">
+    <ng-container *ngIf="inpProjectList().length > 0">
+        <div
+            *ngFor="let project of inpProjectList()"
+            class="listItem"
+            (click)="handleProjectItemClick(project.PROJECT_id)"
+            tabindex="0"
+        >
+            <div *ngIf="inpWindowWidth() > WINDOW_LIMIT; else smallVariant">
+                <div class="h3" [pTooltip]="project.PROJECT_title">
+                    <h3>
+                        {{
+                            project.PROJECT_title.length > STRING_SPLITTING
+                                ? project.PROJECT_title.substring(
+                                      0,
+                                      STRING_SPLITTING
+                                  ) + "..."
+                                : project.PROJECT_title
+                        }}
+                    </h3>
+                </div>
+                <div class="listItemContent">
+                    <p>
+                        Start:
+                        {{ project.PROJECT_start | dateFormattingPipe }}
+                    </p>
+                    <p *ngIf="project.PROJECT_ticketNumber.trim().length > 0">
+                        Ticketnummer:
+                        {{ project.PROJECT_ticketNumber }}
+                    </p>
+                    <p *ngIf="project.PROJECT_ticketNumber.trim().length < 1">
+                        Ticketnummer: <i>keine vorhanden</i>
+                    </p>
+                </div>
+            </div>
+
+            <ng-template #smallVariant>
+                <div class="h3" [pTooltip]="project.PROJECT_title">
+                    <h3>
+                        {{
+                            project.PROJECT_title.length > STRING_SPLITTING
+                                ? project.PROJECT_title.substring(
+                                      0,
+                                      STRING_SPLITTING
+                                  ) + "..."
+                                : project.PROJECT_title
+                        }}
+                    </h3>
+                </div>
+            </ng-template>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="inpProjectList().length < 1">
+        <div class="noProjects">
+            <p>Keine Projekte vorhanden.</p>
+        </div>
+    </ng-container>
+</div>
+
+<!-- for tasks list --------------------------------------------------------------------------------------- -->
+<div class="list" *ngIf="!isProjectListGiven() && inpTaskList()">
+    <ng-container *ngIf="inpTaskList().length > 0">
+        <div
+            *ngFor="let task of inpTaskList()"
+            class="listItem"
+            (click)="handleProjectItemClick(task.TASK_id)"
+            tabindex="0"
+        >
+            <div *ngIf="inpWindowWidth() > WINDOW_LIMIT; else smallTaskVariant">
+                <div class="h3" [pTooltip]="task.TASK_title">
+                    <h3>
+                        {{
+                            task.TASK_title.length > STRING_SPLITTING
+                                ? task.TASK_title.substring(
+                                      0,
+                                      STRING_SPLITTING
+                                  ) + "..."
+                                : task.TASK_title
+                        }}
+                    </h3>
+                </div>
+                <div class="listItemContent">
+                    <p>Start: {{ task.TASK_start | dateFormattingPipe }}</p>
+                    <p *ngIf="task.TASK_ticketNumber">
+                        Ticketnummer:
+                        {{ task.TASK_ticketNumber }}
+                    </p>
+                    <p *ngIf="task.TASK_ticketNumber.trim().length < 1">
+                        Ticketnummer: <i>keine vorhanden</i>
+                    </p>
+                </div>
+            </div>
+            <ng-template #smallTaskVariant>
+                <div class="h3" [pTooltip]="task.TASK_title">
+                    <h3>
+                        {{
+                            task.TASK_title.length > STRING_SPLITTING
+                                ? task.TASK_title.substring(
+                                      0,
+                                      STRING_SPLITTING
+                                  ) + "..."
+                                : task.TASK_title
+                        }}
+                    </h3>
+                </div>
+            </ng-template>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="inpTaskList().length < 1">
+        <div class="noProjects">
+            <p>Keine Aufgaben vorhanden.</p>
+        </div>
+    </ng-container>
+</div>
