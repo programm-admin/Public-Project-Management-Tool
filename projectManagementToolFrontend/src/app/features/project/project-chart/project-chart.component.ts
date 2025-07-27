@@ -32,8 +32,8 @@ export class ProjectChartComponent implements OnInit {
                         (taskItem: ChartComponentInputListItem) =>
                             taskItem.itemDuration
                     ),
-                    backgroundColor: 'rgb(255, 200, 200)',
-                    borderColor: 'rgb(255, 200, 200)',
+                    backgroundColor: 'rgba(206, 81, 81, 1)',
+                    borderColor: 'rgb(206, 81, 81)',
                     label: 'Dauer [in Tagen]',
                 },
             ],
@@ -46,32 +46,32 @@ export class ProjectChartComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        color: 'rgb(255, 200, 200)',
+                        color: 'rgba(0, 0, 0, 1)',
                     },
                 },
             },
             scales: {
                 x: {
                     ticks: {
-                        color: 'rgb(255, 200, 200)',
+                        color: 'rgba(0, 0, 0, 1)',
                         font: {
                             weight: 0.4,
                         },
                     },
                     grid: {
-                        color: 'rgb(255, 255, 255)',
+                        color: 'rgb(0, 0, 0)',
                         drawBorder: false,
                     },
                 },
                 y: {
                     ticks: {
-                        color: 'rgb(255, 200, 200)',
+                        color: 'rgba(0, 0, 0, 1)',
                         font: {
                             weight: 0.4,
                         },
                     },
                     grid: {
-                        color: 'rgb(255, 255, 255)',
+                        color: 'rgb(0, 0, 0)',
                         drawBorder: false,
                     },
                 },
