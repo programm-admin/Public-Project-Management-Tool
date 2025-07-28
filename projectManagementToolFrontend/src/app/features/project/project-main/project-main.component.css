@@ -22,3 +22,8 @@
 .durationP {
     color: black;
 }
+
+.h2 {
+    padding-left: var(--div--padding--left-right);
+    padding-right: var(--div--padding--left-right);
+}

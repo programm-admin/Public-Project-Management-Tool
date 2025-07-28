@@ -5,6 +5,7 @@ body {
     height: 100%;
     overflow: hidden;
     margin: 0;
+    font-family: "Courier New", Courier, monospace;
 }
 
 :root {
@@ -40,7 +41,6 @@ a {
     text-decoration: underline;
     color: var(--button--hover--background-color);
     transition-duration: var(--standard--transition--duration);
-    font-family: "Inter", sans-serif;
     font-size: calc(0.9 * var(--standard--font-size));
     font-weight: normal;
 }
@@ -72,18 +72,15 @@ tr {
 input {
     width: 100%;
     font-size: var(--standard--font-size);
-    font-family: "Inter", sans-serif;
 }
 
 span input {
     width: 100%;
-    font-family: "Inter", sans-serif;
 }
 
 h1 {
     font-size: calc(1.4 * var(--standard--font-size));
     line-height: var(--standard--line-height);
-    font-family: "Inter", sans-serif;
 }
 h2 {
     font-size: calc(1.1 * var(--standard--font-size));
@@ -92,14 +89,12 @@ h2 {
     text-decoration: underline;
     margin-bottom: 3rem;
     margin-top: 3rem;
-    font-family: "Inter", sans-serif;
 }
 
 p,
 span {
     font-size: var(--standard--font-size);
     line-height: var(--standard--line-height);
-    font-family: "Inter", sans-serif;
 }
 
 .buttonShadow {
